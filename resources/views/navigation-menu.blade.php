@@ -14,7 +14,7 @@
                     $navLinks = [
                         // ['href' => 'inicio', 'name' => 'inicio', 'text' => 'Inicio'],
                         ['href' => 'home', 'name' => 'home', 'text' => 'Home'],
-                        ['href' => 'dashboard', 'name' => 'peliculas', 'text' => 'Peliculas'],
+                        ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Dashboard'],
                     ];
                 @endphp                
                 <!-- Navigation Links -->
@@ -131,10 +131,10 @@
                             </x-slot>
                         </x-jet-dropdown>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline dark:text-gray-500">{{__('Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline dark:text-gray-500">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline dark:text-gray-500">{{__('Register')}}</a>
                         @endif                 
                     @endauth
                 </div>
@@ -237,12 +237,12 @@
         @else
             <div class="py-1 border-t border-gray-200">
                 <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                    {{__('login')}} 
+                    {{__('Login')}} 
 
                 </x-jet-responsive-nav-link>
                 @if (Route::has('register'))
                     <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                       {{ __('register')}} 
+                       {{ __('Register')}} 
 
                     </x-jet-responsive-nav-link>
                 @endif
