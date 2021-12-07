@@ -13,10 +13,24 @@ class Course extends Model
     // como aprovado sin que pase por la revision de un admin
 
     protected $guarded = ['id', 'status'];
+    protected $withCount = ['students', 'reviews'];
+    // protected $withAvg = ['reviews', 'rating'];
+
 
     const BORRADOR = 1;
     const REVISION = 2;
     const PUBLICADO = 3;
+
+    // Agregar nuevo atributo
+    public function getRatingAttribute()
+    {
+        if ($this->reviews_count) {
+
+            return round($this->reviews->avg('rating'), 1);
+        }else{
+            return false;
+        }
+    }
 
     // Relacion 1:M inversa
     public function teacher(){

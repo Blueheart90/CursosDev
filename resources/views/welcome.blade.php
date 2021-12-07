@@ -134,4 +134,6 @@
 
 <x-app-layout>
     hola
+
+    @dump($courses)
 </x-app-layout>
