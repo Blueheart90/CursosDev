@@ -32,6 +32,12 @@ class Course extends Model
         }
     }
 
+    //
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // Relacion 1:M inversa
     public function teacher(){
 
