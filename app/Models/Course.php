@@ -21,6 +21,25 @@ class Course extends Model
     const REVISION = 2;
     const PUBLICADO = 3;
 
+    // Local scope querys
+    public function scopeCategory($query, $categoryId)
+    {
+        // Se revisa que la id no sea null
+        // Si esta definido se ejecuta la query
+        if ($categoryId) {
+
+            return $query->where('category_id', $categoryId);
+        }
+    }
+
+    public function scopeLevel($query, $levelId)
+    {
+        if ($levelId) {
+
+            return $query->where('level_id', $levelId);
+        }
+    }
+
     // Agregar nuevo atributo
     public function getRatingAttribute()
     {
