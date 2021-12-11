@@ -7,7 +7,7 @@
                 
     >
 
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 py-36">
+        <div class="container py-36">
             <div class="w-full md:w-3/4 lg:w-1/2">
                 <h1 class="text-4xl font-bold text-white ">Los mejores cursos de programación GRATIS y en español.</h1>
                 <p class="mt-2 mb-4 text-lg text-white">Si estás buscando mejorar tus conocimientos de programacion, este es tu lugar. </p>
@@ -22,4 +22,6 @@
     </section>
 
     <livewire:course-index /> 
+
+
 </x-app-layout>

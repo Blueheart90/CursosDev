@@ -1,6 +1,6 @@
 <div>
     <div class="py-4 mb-16 bg-gray-200">
-        <div class="flex px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="container flex">
             <button wire:click="resetFilters" class="h-12 px-4 mr-4 text-gray-700 bg-white rounded-lg shadow hover:bg-gray-300">
                 <i class="mr-2 text-sm fas fa-globe"></i>
                 Todos los cursos
@@ -60,4 +60,6 @@
 
         {{ $courses->links() }}
     </div>
+
+    {{-- al poner un filtro estando en una pagina 2> no muestra correctamente el filtro --}}
 </div>
