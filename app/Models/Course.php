@@ -47,7 +47,7 @@ class Course extends Model
 
             return round($this->reviews->avg('rating'), 1);
         }else{
-            return false;
+            return null;
         }
     }
 

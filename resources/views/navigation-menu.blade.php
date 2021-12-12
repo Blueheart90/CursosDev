@@ -15,7 +15,7 @@
                         // ['routeName' => 'inicio', 'routeActive' => 'inicio', 'text' => 'Inicio'],
                         ['routeName' => 'home', 'routeActive' => 'home', 'text' => 'Home'],
                         ['routeName' => 'dashboard', 'routeActive' => 'dashboard', 'text' => 'Dashboard'],
-                        ['routeName' => 'courses.index', 'routeActive' => 'courses.index', 'text' => 'Cursos'],
+                        ['routeName' => 'courses.index', 'routeActive' => 'courses.*', 'text' => 'Cursos'],
                     ];
                 @endphp                
                 <!-- Navigation Links -->

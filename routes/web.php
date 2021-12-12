@@ -25,6 +25,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 
-Route::get('cursos/{course}', function (Course $course) {
-    return $course;
-})->name('courses.show');
+Route::get('cursos/{course}', [CourseController::class, 'show'])->name('courses.show');
