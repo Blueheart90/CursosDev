@@ -12,10 +12,7 @@
             <div class="w-full md:w-3/4 lg:w-1/2">
                 <h1 class="text-4xl font-bold text-white ">Domina la tecnologia web con CursosDev</h1>
                 <p class="mt-2 mb-4 text-lg text-white">En CursosDev encontrarás cursos, manuales y artículos que te ayudarán a convertirte en un profesional del desarrollo web </p>
-                <div class="flex">
-                    <input class="w-full transition bg-gray-200 focus:bg-white focus:ring-transparent focus:outline-none rounded-l-md" type="search" name="search" placeholder="¿Que quieres aprender hoy?">
-                    <button class="px-3 text-white bg-blue-500 hover:bg-blue-600 rounded-r-md" type="submit">Buscar</button>
-                </div>
+                <livewire:search /> 
             </div>
             
         </div>
