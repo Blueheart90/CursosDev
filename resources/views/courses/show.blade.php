@@ -106,8 +106,16 @@
                             <a class="text-sm font-bold text-blue-400 " href="">{{ '@' . Str::slug($course->teacher->name, '') }}</a>
                         </div>
                     </div>
-                    <a href="" class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600">Tomar el curso</a>
+                    @can('enrolled', $course)
+                        <a href="{{ route('courses.status', $course) }}" class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">Continuar con el curso</a>
+                    @else
+                        
+                        <form action="{{ route('courses.enrolled', $course) }}" method="POST">
+                            @csrf
+                            <button class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">Tomar el curso</button>
+                        </form>
 
+                    @endcan
                 </div>
 
 
