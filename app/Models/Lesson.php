@@ -11,6 +11,14 @@ class Lesson extends Model
 
     protected $guarded = ['id'];
 
+    public function getCompleteAttribute()
+    {
+        // Recuperamos la collection usuarios que tomaron la
+        // Leccion y preguntamos si en esta existe el user actual
+        // Estos devuelve un boolean
+        return $this->users->contains(auth()->user()->id);
+    }
+
     // Relacion 1:M Inversa
     public function section(){
 
