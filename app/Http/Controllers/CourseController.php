@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
     
+
     public function enrolled(Course $course)
     {
         // Agregando registro en la tabla pivot (Relacion M:M)
