@@ -1,6 +1,6 @@
 <div class="mt-8 ">
-    <div class="container grid grid-cols-3 gap-8">
-        <div class="col-span-2 ">
+    <div class="container grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class=" lg:col-span-2">
             <div class="embed-responsive">
                 {!! $current->iframe !!}
 
@@ -13,8 +13,12 @@
                     {{ $current->description->name }}
                 </div>
             @endif
-            <div class="flex items-center mt-4">
-                <i class="text-2xl text-gray-600 cursor-pointer fas fa-toggle-off"></i>
+            <div wire:click="complete" class="flex items-center mt-4">
+                @if ($current->complete)
+                    <i class="text-2xl text-blue-600 cursor-pointer fas fa-toggle-on"></i>
+                @else  
+                    <i class="text-2xl text-gray-600 cursor-pointer fas fa-toggle-off"></i>
+                @endif
                 <p class="ml-2 text-sm text-gray-600">Marcar lección como terminada</p>
             </div>
             <div class="mt-2 card">
@@ -42,10 +46,10 @@
                         <a class="text-sm text-blue-500" href="">{{ '@' . Str::slug($course->teacher->name, '') }}</a>
                     </div>
                 </div>
-                <p class="mt-2 text-sm text-gray-600 ">20% completado</p>
+                <p class="mt-2 text-sm text-gray-600 ">{{$this->progressBar . '%'}} completado</p>
                 <div class="relative pt-1">
                     <div class="flex h-2 mb-4 overflow-hidden text-xs bg-gray-200 rounded">
-                        <div style="width:30%" class="flex flex-col justify-center text-center text-white bg-blue-500 shadow-none whitespace-nowrap"></div>
+                        <div style="width:{{$this->progressBar . '%'}}" class="flex flex-col justify-center text-center text-white transition-all duration-500 bg-blue-500 shadow-none whitespace-nowrap"></div>
                     </div>
                 </div>
                 <ul>
