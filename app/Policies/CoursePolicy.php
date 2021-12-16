@@ -20,8 +20,23 @@ class CoursePolicy
         //
     }
 
+    // Verifica que el user este matriculado en el curso
     public function enrolled(User $user, Course $course)
     {
         return $course->students->contains($user);
+    }
+
+    // Verifica que el curso este publicado
+    // Por defecto lo primero que hace 
+    // el policy es verificar si este loggeado 
+    // y despues si ejecuta el metodo
+    // para cambiar este comportamiento se antepone ? al User. (?User $user)
+    public function published(?User $user, Course $course)
+    {
+        if ($course->status == 3) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }

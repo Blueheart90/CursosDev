@@ -6,13 +6,20 @@ use App\Models\Course;
 use App\Models\Lesson;
 use Livewire\Component;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class CourseStatus extends Component
 {
+    use AuthorizesRequests;
+
     public $course;
     public $current;
 
     public function mount(Course $course)
     {
+        // policy para no ingresar a la vista sin esta registrado al curso
+        $this->authorize('enrolled', $course);
+        
         $this->course = $course;
         // Iteramos las lecciones del curso
         // y se verifica si No esta completada

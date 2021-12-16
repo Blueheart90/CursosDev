@@ -41,7 +41,7 @@
                     <article 
                         {{-- Conseguimos que la primera section este abierta --}}
                         @if($loop->first)
-                            x-data="{ open: open}" 
+                            x-data="{ open: true}" 
                         
                         @else
                             x-data="{ open: false}" 
