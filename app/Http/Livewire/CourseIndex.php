@@ -20,6 +20,13 @@ class CourseIndex extends Component
         $this->reset(['categoryId', 'levelId']);
     }
     
+    // se ejecuta cuando se actualiza el component
+    // y resetea la propiedad page de la paginacion
+    // para que los filtros se ejecuten sin problemas
+    public function updating()
+    {
+        $this->resetPage();
+    }
     
     public function render()
     {
