@@ -9,6 +9,13 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Leer usuarios')->only('index');
+        $this->middleware('can:Editar usuarios')->only('edit','update');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +50,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->roles()->sync($request->roles);
+        // $user->roles()->sync($request->roles);
+
+        // All current roles will be removed from the user and replaced by the array given
+        $user->syncRoles($request->roles);
 
         return redirect()->route('admin.users.edit', $user);
     }
