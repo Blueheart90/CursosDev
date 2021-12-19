@@ -18,7 +18,7 @@ class CourseController extends Controller
         // Agregando registro en la tabla pivot (Relacion M:M)
         $course->students()->attach(auth()->user()->id);
 
-        return redirect()->route('course.status', $course);
+        return redirect()->route('courses.status', $course);
     }
 
     public function show(Course $course)
