@@ -44,5 +44,9 @@
         @stack('modals')
 
         @livewireScripts
+        
+        @if (isset($js))
+            {{ $js }}
+        @endif
     </body>
 </html>
