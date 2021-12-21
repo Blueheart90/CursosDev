@@ -62,8 +62,10 @@
     </figure>
     <div>
         <p class="mb-2 ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, laudantium eveniet nam iste aliquid pariatur eaque quis neque provident inventore rem itaque quae doloribus, quam voluptas ipsam. Nisi, maiores placeat?</p>
-        {!! Form::file('file', $attributes = ['class' => 'form-input w-full', 'id' => 'file']) !!}
-        
+        {!! Form::file('file', $attributes = ['class' => 'form-input w-full', 'id' => 'file', 'accept' => 'image/*']) !!}
+        @error('file')
+            <strong class="mt-2 text-sm text-red-600 ">{{ $message }}</strong>
+        @enderror 
     </div>
     
 </div>

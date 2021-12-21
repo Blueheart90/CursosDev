@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\isEmpty;
 
 class CourseController extends Controller
 {
@@ -55,6 +54,7 @@ class CourseController extends Controller
             'category_id' => 'required',
             'level_id' => 'required',
             'price_id' => 'required',
+            'file' => 'max:4000|image',
         ]);
 
         // $course = Course::create($request->all());
@@ -118,6 +118,8 @@ class CourseController extends Controller
             'category_id' => 'required',
             'level_id' => 'required',
             'price_id' => 'required',
+            'file' => 'image',
+            'file' => 'max:4000|image',
         ]);
 
         $course->update($request->all());

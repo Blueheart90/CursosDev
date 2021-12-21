@@ -17,7 +17,8 @@
                         ['routeName' => 'dashboard', 'routeActive' => 'dashboard', 'text' => 'Dashboard'],
                         ['routeName' => 'courses.index', 'routeActive' => 'courses.*', 'text' => 'Cursos'],
                     ];
-                @endphp                
+                @endphp 
+                             
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @foreach ($navLinks as $link)
