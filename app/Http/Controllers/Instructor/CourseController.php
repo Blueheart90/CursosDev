@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Instructor;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Course;
 use App\Models\Level;
 use App\Models\Price;
+use App\Models\Course;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\isEmpty;
 
 class CourseController extends Controller
 {
@@ -44,7 +47,32 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:courses',
+            'subtitle' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'level_id' => 'required',
+            'price_id' => 'required',
+        ]);
+
+        // $course = Course::create($request->all());
+        $course = auth()->user()->courses_dictated()->create($request->all());
+
+        // Si el user sube una foto
+        if($request->hasFile('file')){ 
+
+            // Almacena la imagen en myapp/storage/app/public
+            // Ej. 'courses/image_name.jpg'
+            $url = $request->file('file')->store('courses', 'public');
+
+            $course->image()->create([
+                'url' => $url,
+            ]);
+        }
+        
+        return redirect()->route('instructor.courses.edit', $course);
     }
 
     /**
@@ -82,7 +110,51 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:courses,slug,' . $course->id,
+            'subtitle' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'level_id' => 'required',
+            'price_id' => 'required',
+        ]);
+
+        $course->update($request->all());
+        // Si el user sube una foto
+        if($request->hasFile('file')){ 
+
+            // Almacena la imagen en myapp/storage/app/public
+            // Ej. 'courses/image_name.jpg'
+            $url = $request->file('file')->store('courses', 'public');
+  
+            // Consultamos si el curso ya tiene una imagen asociada
+            if (isset($course->image)) {
+
+                // Si es asi, preguntamos si esta imagen existe en la carpeta 'public/courses/image.jpg
+                if (Storage::exists( 'public/' . $course->image->url)) {
+                    // Si esta existe se elimina
+                    Storage::delete( 'public/' . $course->image->url);
+                } 
+                // actualizamos por medio de la relacion la url
+                $course->image()->update([
+                    'url' => $url,
+                ]);
+
+                
+            }else{
+                // Si no tiene una imagen aun entonces creamos un nuevo registro en la tabla imagen
+                $course->image()->create([
+                    'url' => $url,
+                ]);
+                
+            }
+
+        }
+
+        return redirect()->route('instructor.courses.edit', $course);
+
+
     }
 
     /**

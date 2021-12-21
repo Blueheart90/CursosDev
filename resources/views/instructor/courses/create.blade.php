@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h1 class="text-2xl font-bold uppercase ">Crear curso</h1>
                 <hr class="mt-2 mb-6 ">
-                {!! Form::open(['route' => 'instructor.courses.store', 'files' => 'true']) !!}
+                {!! Form::open(['route' => 'instructor.courses.store', 'files' => 'true', 'autocomplete' => 'false']) !!}
                     @include('instructor.courses.partials.form')
                     <div class="flex justify-end">
                         {!! Form::submit('Crear curso', $attributes  = ['class' => 'cursor-pointer px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md']) !!}

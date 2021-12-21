@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('public/cursos');
-        //Creamos un directorio para almacenar las imagenes de los cursos
-        Storage::makeDirectory('public/cursos');
+        Storage::deleteDirectory('public/courses');
+        //Creamos un directorio para almacenar las imagenes de los courses
+        Storage::makeDirectory('public/courses');
 
         // \App\Models\User::factory(10)->create();
         $this->call([

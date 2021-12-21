@@ -21,6 +21,7 @@ class CoursesIndex extends Component
     {
         $courses = Course::where('user_id', auth()->id())
             ->Where('title', 'LIKE', '%' . $this->search . '%')
+            ->latest('id')
             ->paginate(8);
         
 
