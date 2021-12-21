@@ -1,7 +1,8 @@
 <div class="container py-8">
     <x-table-responsive>
-        <div class="px-6 py-4 ">
-            <input wire:model='search' class="w-full rounded-sm shadow-sm appearance-none" placeholder="Escriba un nombre del curso" type="search">
+        <div class="flex px-6 py-4">
+            <input wire:model='search' class="flex-1 rounded-sm shadow-sm appearance-none" placeholder="Escriba un nombre del curso" type="search">
+            <a href="{{ route('instructor.courses.create') }}" class="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Nuevo curso</a>
         </div>
         @if ($courses->isEmpty())
 
@@ -94,7 +95,11 @@
 
                             </td>
                             <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <a href="{{ route('instructor.courses.edit', $course) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a 
+                                    href="{{ route('instructor.courses.edit', $course) }}" 
+                                    class="text-indigo-600 hover:text-indigo-900">
+                                    Edit
+                                </a>
                             </td>
                         </tr>          
                                             
