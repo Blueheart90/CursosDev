@@ -10,6 +10,7 @@
         <article class="mb-6 card">
             <div class="bg-gray-100 card-body">
                 @if ($section->is($item))
+                    
                     <form wire:submit.prevent='update'>
                         <input wire:model='section.name' class="w-full rounded-md " placeholder="Ingrese el nombre de la sección" type="text">
                         @error('section.name')
@@ -24,7 +25,9 @@
                             <i wire:click='destroy({{ $item }})' class="text-red-500 cursor-pointer fas fa-eraser"></i>
                         </div>
                     </header>
-                
+                    <div>
+                        <livewire:instructor.courses-lesson :section='$item' :wire:key="$item->id">
+                    </div>
                     
                 @endif
 

@@ -23,6 +23,7 @@ class CoursesCurriculum extends Component
 
     public function edit(Section $section)
     {
+        $this->resetValidation();
         $this->section = $section;
     }
 
