@@ -21,8 +21,8 @@ class CoursesLesson extends Component
     public function mount(Section $section)
     {
         $this->section = $section;
-        $this->lesson = new Lesson();
         $this->platforms = Platform::all();
+        $this->lesson = new Lesson();
     }
 
     public function edit(Lesson $lesson)
