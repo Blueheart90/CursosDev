@@ -44,8 +44,11 @@
                             <button wire:click='edit({{ $item }})' class="px-4 py-2 ml-2 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Editar</button>
                             <button wire:click='destroy({{ $item }})' class="px-4 py-2 ml-2 text-sm text-white bg-red-500 rounded-md hover:bg-red-600">Eliminar</button>
                         </div>
-                        <div>
+                        <div class=" mb-4">
                             <livewire:instructor.lesson-description :lesson='$item' :wire:key="$item->id">
+                        </div>
+                        <div>
+                            <livewire:instructor.lesson-resource :lesson='$item' :wire:key="$item->id">                           
                         </div>
                     </div> 
                 @endif            
