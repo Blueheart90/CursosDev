@@ -7,7 +7,7 @@
 
     @forelse ($course->sections as $item)
         
-        <article class="mb-6 card">
+        <article x-data="{ open: false }" class="mb-6 card">
             <div class="bg-gray-100 card-body">
                 @if ($section->is($item))
                     
@@ -19,13 +19,13 @@
                     </form>
                 @else
                     <header class="flex items-center justify-between">
-                        <h1 class="cursor-pointer "><strong>Sección: </strong>{{$item->name}}</h1>
+                        <h1 @click="open = !open" class="cursor-pointer "><strong>Sección: </strong>{{$item->name}}</h1>
                         <div>
                             <i wire:click='edit({{ $item }})' class="text-blue-500 cursor-pointer fas fa-edit"></i>
                             <i wire:click='destroy({{ $item }})' class="text-red-500 cursor-pointer fas fa-eraser"></i>
                         </div>
                     </header>
-                    <div>
+                    <div x-show="open" x-transition.duration.500ms x-cloak>
                         <livewire:instructor.courses-lesson :section='$item' :wire:key="$item->id">
                     </div>
                     

@@ -1,6 +1,6 @@
 <div>
     @forelse ($section->lessons as $item)
-        <article class="mt-4 card">
+        <article x-data="{ open: false }" class="mt-4 card">
             <div class="card-body">
                 @if ($lesson->is($item))
                     <form wire:submit.prevent='update'>
@@ -33,10 +33,10 @@
                         </div>
                     </form>
                 @else
-                    <header>
+                    <header @click="open = !open"  class="flex cursor-pointer">
                         <h1><i class="mr-1 text-blue-500 far fa-play-circle"></i> <strong>Lección: </strong>{{$item->name}} </h1>
                     </header> 
-                    <div>
+                    <div x-show="open" x-transition.duration.500ms x-cloak>
                         <hr class="my-2 ">
                         <p class="text-sm ">Plataforma: {{ $item->platform->name }}</p>
                         <p class="text-sm ">Enlace: <a class="text-blue-600 " href="{{ $item->url }}" target="_blank" rel="noopener noreferrer">{{ $item->url }}</a></p>
@@ -44,11 +44,11 @@
                             <button wire:click='edit({{ $item }})' class="px-4 py-2 ml-2 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Editar</button>
                             <button wire:click='destroy({{ $item }})' class="px-4 py-2 ml-2 text-sm text-white bg-red-500 rounded-md hover:bg-red-600">Eliminar</button>
                         </div>
-                        <div class=" mb-4">
-                            <livewire:instructor.lesson-description :lesson='$item' :wire:key="$item->id">
+                        <div class="mb-4 ">
+                            <livewire:instructor.lesson-description :lesson='$item' :wire:key="'lesson-description-' . $item->id">
                         </div>
                         <div>
-                            <livewire:instructor.lesson-resource :lesson='$item' :wire:key="$item->id">                           
+                            <livewire:instructor.lesson-resource :lesson='$item' :wire:key="'lesson-resource-' . $item->id">                           
                         </div>
                     </div> 
                 @endif            
@@ -93,7 +93,7 @@
                     @enderror
 
                     <div class="flex justify-end mt-2">
-                        <button wire:click='store' class="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Agregar</button>
+                        <button wire:click='store' class="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Agregar lección</button>
                         <button @click="open = false" class="px-4 py-2 ml-2 text-white bg-red-500 rounded-md hover:bg-red-600">Cancelar</button>
     
                     </div>

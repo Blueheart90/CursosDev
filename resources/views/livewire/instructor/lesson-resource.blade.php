@@ -1,28 +1,31 @@
 <div class="card">
     <div 
-        x-data="{ uploadedFinished: false}"
+        x-data="{ uploadedFinished: false, open: false}"
         x-on:livewire-upload-finish="uploadedFinished = true" 
-        class="card-body bg-gray-100">
-        <header>
+        class="bg-gray-100 card-body">
+        <header @click="open = !open" class="flex cursor-pointer">
             <h1>Recursos de la lección</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-2 transition duration-300 ease-in-out" :class="{'rotate-180 ' : open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
         </header>
-        <div>
-            <hr class=" my-2">
+        <div x-show="open" x-transition.duration.500ms x-cloak>
+            <hr class="my-2 ">
             @if($lesson->resource)
-                <div class="flex justify-between items-center">
-                    <p><i wire:click='download' class="fas fa-download text-gray-500 mr-2 cursor-pointer"></i>{{ $lesson->resource->url }}</p>
-                    <i wire:click='destroy' class="fas fa-trash text-red-500 cursor-pointer"></i>
+                <div class="flex items-center justify-between">
+                    <p><i wire:click='download' class="mr-2 text-gray-500 cursor-pointer fas fa-download"></i>{{ $lesson->resource->url }}</p>
+                    <i wire:click='destroy' class="text-red-500 cursor-pointer fas fa-trash"></i>
                 </div>
             @else
                 <form wire:submit.prevent='save'>
-                    <div class=" flex items-center">
-                        <input wire:model='file' type="file" class=" rounded-sm flex-1">
+                    <div class="flex items-center ">
+                        <input wire:model='file' type="file" class="flex-1 rounded-sm ">
                         <div x-show="uploadedFinished" x-cloak>
                             <button type="submit" class="px-4 py-2 ml-2 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Guardar</button>
                         </div>
                     </div>
-                    <div class=" text-blue-500 font-bold mt-1" wire:loading wire:target="file">
-                        <svg class="h-6 w-6 mr-1 inline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: none; shape-rendering: auto;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <div class="mt-1 font-bold text-blue-500 " wire:loading wire:target="file">
+                        <svg class="inline w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: none; shape-rendering: auto;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
                             <rect x="17.5" y="30" width="15" height="40" fill="#0051a2">
                             <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="18;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
                             <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="64;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
