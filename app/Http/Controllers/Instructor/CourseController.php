@@ -159,6 +159,10 @@ class CourseController extends Controller
 
     }
 
+    public function goals(Course $course)
+    {
+        return view('instructor.courses.goals', compact('course'));
+    }
     /**
      * Remove the specified resource from storage.
      *

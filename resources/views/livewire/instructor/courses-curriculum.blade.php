@@ -7,7 +7,7 @@
 
     @forelse ($course->sections as $item)
         
-        <article x-data="{ open: false }" class="mb-6 card">
+        <article x-data="{ open: true }" class="mb-6 card">
             <div class="bg-gray-100 card-body">
                 @if ($section->is($item))
                     
