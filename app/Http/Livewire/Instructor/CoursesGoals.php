@@ -9,6 +9,7 @@ use Livewire\Component;
 class CoursesGoals extends Component
 {
     public $course, $goal;
+    public $name;
 
     protected $rules = [
         'goal.name' => 'required'
@@ -40,6 +41,23 @@ class CoursesGoals extends Component
         $goal->delete();
 
         $this->course = Course::find($this->course->id);
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'name' => 'required'
+        ]);
+
+        $this->course->goals()->create([
+            'name' => $this->name
+        ]);
+
+        $this->reset('name');
+
+        $this->course = Course::find($this->course->id);
+
+
     }
 
     public function render()

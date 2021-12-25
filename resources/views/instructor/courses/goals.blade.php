@@ -5,7 +5,7 @@
     <div>
         <livewire:instructor.courses-goals :course='$course' :wire:key="'courses-goals' . $course->id">
     </div>
-    <div>
+    <div class="my-8 ">
         <livewire:instructor.courses-requirements :course='$course' :wire:key="'courses-requirements' . $course->id">
     </div>
     <div>
