@@ -34,7 +34,8 @@
                         <li class="pl-2 mb-1 leading-7 border-l-4 @routeIs('instructor.courses.edit', $course) border-indigo-400 @endif"><a href="{{ route('instructor.courses.edit', $course) }}">Información del curso</a></li>
                         <li class="pl-2 mb-1 leading-7 border-l-4 {{request()->routeIs('instructor.courses.curriculum') ? 'border-indigo-400' : ''}}"><a href="{{ route('instructor.courses.curriculum', $course) }}">Lecciónes del curso</a></li>
                         <li class="pl-2 mb-1 leading-7 border-l-4 {{request()->routeIs('instructor.courses.goals') ? 'border-indigo-400' : ''}}"><a href="{{ route('instructor.courses.goals', $course) }}">Metas del curso</a></li>
-                        <li class="pl-2 mb-1 leading-7 border-l-4 "><a href=""></a>Estudiantes</li>
+                        <li class="pl-2 mb-1 leading-7 border-l-4 {{request()->routeIs('instructor.courses.students') ? 'border-indigo-400' : ''}}"><a href="{{ route('instructor.courses.students', $course) }}">Estudiantes</a></li>
+
                     </ul>
         
                 </aside>
