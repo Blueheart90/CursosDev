@@ -7,8 +7,12 @@ use App\Models\Section;
 use Livewire\Component;
 use Illuminate\Http\Request;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class CoursesCurriculum extends Component
 {
+    use AuthorizesRequests;
+
     public $course, $section, $newSectionName;
 
     protected $rules = [
@@ -17,8 +21,10 @@ class CoursesCurriculum extends Component
 
     public function mount(Course $course)
     {
-       $this->course = $course;
-       $this->section = new Section();
+        $this->authorize('dictated', $course);
+        $this->course = $course;
+        $this->section = new Section();
+
     }
 
     public function edit(Section $section)

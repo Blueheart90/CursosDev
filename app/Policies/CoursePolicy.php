@@ -39,4 +39,14 @@ class CoursePolicy
             return false;
         }
     }
+
+    public function dictated(User $user, Course $course)
+    {
+        // Verifica que el profesor del curso sea el usuario logeado
+        if ($course->teacher->is($user)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
