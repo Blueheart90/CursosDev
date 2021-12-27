@@ -70,6 +70,6 @@ class CoursesCurriculum extends Component
     public function render()
     {
         return view('livewire.instructor.courses-curriculum')
-            ->layout('layouts.instructor');
+            ->layout('layouts.instructor', ['course' => $this->course]);
     }
 }

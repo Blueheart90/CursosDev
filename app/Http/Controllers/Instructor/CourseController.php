@@ -178,6 +178,23 @@ class CourseController extends Controller
         
         return view('instructor.courses.goals', compact('course'));
     }
+
+    public function status(Course $course)
+    {
+        // para evitar que cualquiera pueda cambiar el status del cursos  
+        // en el modelo course indicamos que no permitiera asignación masiva de datos
+        // en este campo
+        // $course->update([
+        //     'status' => 2
+        // ]);
+        $course->status = 2;
+        $course->save();
+
+        return back();
+
+ 
+    }
+
     /**
      * Remove the specified resource from storage.
      *

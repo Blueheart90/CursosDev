@@ -27,17 +27,43 @@
             @livewire('navigation-menu')
 
             <!-- Page Content -->
-            <div class="container grid grid-cols-5 py-8">
+            <div class="container grid grid-cols-5 gap-6 py-8">
                 <aside>
                     <h1 class="mb-4 text-lg font-bold ">Edicion del curso</h1>
-                    <ul class="text-sm text-gray-600 ">
+                    <ul class="mb-4 text-sm text-gray-600">
                         <li class="pl-2 mb-1 leading-7 border-l-4 @routeIs('instructor.courses.edit', $course) border-indigo-400 @endif"><a href="{{ route('instructor.courses.edit', $course) }}">Información del curso</a></li>
                         <li class="pl-2 mb-1 leading-7 border-l-4 {{request()->routeIs('instructor.courses.curriculum') ? 'border-indigo-400' : ''}}"><a href="{{ route('instructor.courses.curriculum', $course) }}">Lecciónes del curso</a></li>
                         <li class="pl-2 mb-1 leading-7 border-l-4 {{request()->routeIs('instructor.courses.goals') ? 'border-indigo-400' : ''}}"><a href="{{ route('instructor.courses.goals', $course) }}">Metas del curso</a></li>
                         <li class="pl-2 mb-1 leading-7 border-l-4 {{request()->routeIs('instructor.courses.students') ? 'border-indigo-400' : ''}}"><a href="{{ route('instructor.courses.students', $course) }}">Estudiantes</a></li>
-
+                    
                     </ul>
+                    @switch($course->status)
+                        @case(1)
+                            <form action="{{ route('instructor.courses.status', $course) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Solicitar revisión</button>
         
+                            </form>
+                            @break
+                        @case(2)
+                            <div class="text-gray-500 card">
+                                <div class="card-body">
+                                    El curso se encuentra en revisión
+
+                                </div>
+                            </div>
+                            @break
+                        @case(3)
+                            <div class="text-gray-500 card">
+                                <div class="card-body">
+                                    El curso esta publicado
+                                </div>
+                            </div>
+                            @break
+                        @default
+                            
+                    @endswitch
+
                 </aside>
                 <div class="col-span-4 card">
                     <main class="text-gray-600 card-body">

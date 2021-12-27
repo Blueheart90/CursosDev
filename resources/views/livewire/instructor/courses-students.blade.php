@@ -1,7 +1,4 @@
 <div>
-    <x-slot name="course">
-        {{$course->slug}}
-    </x-slot>
     <h1 class="mb-4 text-2xl font-bold ">Estudiantes del curso</h1>
     <x-table-responsive>
         <div class="px-6 py-4 ">
