@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+    {{-- no sirve porque no esta importado tailwind --}}
+    <x-flash-messages></x-flash-messages> 
     <div class="card">
         <div class="card-body">
             <table class="table table-striped">
@@ -25,7 +27,7 @@
                             <td>{{ $course->title }}</td>
                             <td>{{ $course->category->name }}</td>
                             <td>
-                                <a class=" btn btn-primary">Revisar</a>
+                                <a href="{{ route('admin.courses.show', $course) }}" class=" btn btn-primary">Revisar</a>
                             </td>
                         </tr>
                     @empty

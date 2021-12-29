@@ -49,4 +49,14 @@ class CoursePolicy
             return false;
         }
     }
+
+    // verifica que el curso este en revision
+    public function revision(User $user, Course $course)
+    {
+        if ($course->status == 2) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -2,9 +2,11 @@
     <section class="py-12 mb-12 bg-gray-700">
         <div class="container grid grid-cols-1 gap-6 md:grid-cols-2 ">
             <figure>
-                @if ($course->image)
+                @isset ($course->image)
                     <img class="object-cover w-full h-60" src="{{ Storage::url($course->image->url) }}" alt="Imagen del curso">
-                @endif
+                @else
+                    <img class="object-cover w-full h-60" src="https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Imagen del curso">
+                @endisset
             </figure>
             <div class="text-white ">
                 <h1 class="text-4xl ">{{ $course->title }}</h1>
@@ -85,7 +87,7 @@
                         <li class="text-base text-gray-700">{{ $requirement->name }}</li>
                         
                     @empty
-                        <p>No hay Requisitos aún</p> 
+                        <p>No hay Requisitos aún</p>
                     @endforelse
                 </ul>
             </section>
@@ -108,39 +110,18 @@
                             <a class="text-sm font-bold text-blue-400 " href="">{{ '@' . Str::slug($course->teacher->name, '') }}</a>
                         </div>
                     </div>
-                    @can('enrolled', $course)
-                        <a href="{{ route('courses.status', $course) }}" class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">Continuar con el curso</a>
-                    @else
                         
-                        <form action="{{ route('courses.enrolled', $course) }}" method="POST">
-                            @csrf
-                            <button class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">Tomar el curso</button>
-                        </form>
+                    <form action="{{ route('admin.courses.approved', $course) }}" class=" mt-4"  method="POST">
+                        @csrf
+                        <button class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">Aprobar curso</button>
+                    </form>  
+                    <x-flash-messages></x-flash-messages>                 
 
-                    @endcan
                 </div>
 
 
             </section>
-            <aside class="hidden lg:block ">
-                @forelse ($similares as $similar)
-                    <article class="flex mb-6">
-                        <img class="object-cover w-40 h-32 " src="{{ Storage::url($similar->image->url) }}" alt="">
-                        <div class="ml-3 ">
-                            <h1>
-                                <a class="mb-3 text-gray-500 " href="{{ route('courses.show', $similar) }}">{{ Str::limit($similar->title, 40)}}</a>
-                            </h1>
-                            <div class="flex items-center mb-2">
-                                <img class="object-cover w-8 h-8 rounded-full shadow-lg" src="{{ $similar->teacher->profile_photo_url }}" alt="{{ $similar->teacher->name }}">
-                                <p class="ml-2 text-sm text-gray-700 ">{{ $similar->teacher->name }}</p>
-                            </div>
-                            <p class="text-sm text-gray-600 "><i class="mr-2 text-yellow-400 fas fa-star"></i>{{ $similar->rating ?? 'No hay calificacion aún' }}</p>
-                        </div>
-                    </article>
-                @empty
-                    
-                @endforelse
-            </aside>
+
 
         </div>
 
