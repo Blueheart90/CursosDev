@@ -189,10 +189,19 @@ class CourseController extends Controller
         // ]);
         $course->status = 2;
         $course->save();
+        
+        if ($course->observation) {
+            $course->observation->delete();
+        }
 
-        return back();
+        return redirect()->route('instructor.courses.edit', compact('course'));
 
  
+    }
+
+    public function observation(Course $course)
+    {
+        return view('instructor.courses.observation', compact('course'));
     }
 
     /**

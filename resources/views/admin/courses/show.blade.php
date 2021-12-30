@@ -111,10 +111,11 @@
                         </div>
                     </div>
                         
-                    <form action="{{ route('admin.courses.approved', $course) }}" class=" mt-4"  method="POST">
+                    <form action="{{ route('admin.courses.approved', $course) }}" class="mt-4 "  method="POST">
                         @csrf
                         <button class="block w-full px-4 py-3 mt-4 text-center text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">Aprobar curso</button>
-                    </form>  
+                    </form>
+                    <a class="block w-full px-4 py-3 mt-4 text-center text-white bg-red-500 rounded-md hover:bg-red-600" href="{{ route('admin.courses.observation', $course) }}">Agregar observacion</a>  
                     <x-flash-messages></x-flash-messages>                 
 
                 </div>
