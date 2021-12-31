@@ -268,6 +268,11 @@ return [
         ],
         ['header' => 'courses_settings'],
         [
+            'text' => 'Categories',
+            'route'  => 'admin.categories.index',
+            'icon' => 'fas fa-fw fa-cogs',
+        ],
+        [
             'text' => 'pending_approval',
             'route'  => 'admin.courses.index',
             'icon' => 'fas fa-fw fa-user',
