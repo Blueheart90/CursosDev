@@ -90,13 +90,15 @@
                 </ul>
             </section>
 
-            <section>
+            <section class="mb-8 ">
                 <h1 class="text-3xl font-bold">Descripción</h1>
                 <div class="text-base text-gray-700 ">
 
                     {!! $course->description !!}
                 </div>
             </section>
+
+            <livewire:courses-reviews :course="$course">
         </div>
         <div class="order-1 lg:order-2" >
             <section class="mb-4 card">
