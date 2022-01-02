@@ -100,6 +100,11 @@ class CourseStatus extends Component
         }
     }
 
+    public function download()
+    {
+        return response()->download(storage_path('app/' . $this->current->resource->url));
+    }
+
     public function render()
     {
         return view('livewire.course-status');

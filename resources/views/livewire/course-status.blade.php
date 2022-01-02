@@ -13,13 +13,23 @@
                     {{ $current->description->name }}
                 </div>
             @endif
-            <div wire:click="complete" class="flex items-center mt-4">
-                @if ($current->complete)
-                    <i class="text-2xl text-blue-600 cursor-pointer fas fa-toggle-on"></i>
-                @else  
-                    <i class="text-2xl text-gray-600 cursor-pointer fas fa-toggle-off"></i>
+            <div class="flex justify-between mt-4">
+                {{-- Marcar como terminada --}}
+                <div wire:click="complete" class="flex items-center ">
+                    @if ($current->complete)
+                        <i class="text-2xl text-blue-600 cursor-pointer fas fa-toggle-on"></i>
+                    @else  
+                        <i class="text-2xl text-gray-600 cursor-pointer fas fa-toggle-off"></i>
+                    @endif
+                    <p class="ml-2 text-sm text-gray-600">Marcar lección como terminada</p>
+                </div>
+                @if ($current->resource)
+                    <div wire:click="download" class="flex items-center text-gray-600 cursor-pointer">
+                        <i class="fas fa-download text-lg "></i>
+                        <p class=" text-sm ml-2">Descargar recurso</p>
+                    </div>                    
                 @endif
-                <p class="ml-2 text-sm text-gray-600">Marcar lección como terminada</p>
+
             </div>
             <div class="mt-2 card">
                 <div class="flex font-bold text-gray-500 card-body">
